@@ -1,23 +1,45 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MarketPlace.Models
 {
     public class PieRepository : IPieRepository
     {
-        public IEnumerable<Pie> Pies => throw new NotImplementedException();
+        private readonly AppDbContext _appDbContext;
 
-        public IEnumerable<Pie> PiesOfTheWeek => throw new NotImplementedException();
-
-        public void CreatePie(Pie pie)
+        public PieRepository(AppDbContext appDbContext)
         {
-            throw new NotImplementedException();
+            _appDbContext = appDbContext;
+        }
+
+        public IEnumerable<Pie> AllPies
+        {
+            get
+            {
+                return _appDbContext.Pies.Include(c => c.Category);
+            }
+        }
+
+        public IEnumerable<Pie> PiesOfTheWeek
+        {
+            get
+            {
+                return _appDbContext.Pies.Include(c => c.Category).Where(p => p.IsPieOfTheWeek);
+            }
         }
 
         public Pie GetPieById(int pieId)
         {
-            throw new NotImplementedException();
+            return _appDbContext.Pies.FirstOrDefault(p => p.PieId == pieId);
         }
+
+        public void CreatePie(Pie pie)
+        {
+            //return _appDbContext.Pies.FirstOrDefault(p => p.PieId == pieId)
+        }
+               
 
         public void UpdatePie(Pie pie)
         {

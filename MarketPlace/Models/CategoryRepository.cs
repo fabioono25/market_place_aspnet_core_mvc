@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MarketPlace.Models
 {
     public class CategoryRepository : ICategoryRepository
     {
-        //private readonly AppDbContext _appDbContext;
+        private readonly AppDbContext _appDbContext;
 
-        //public CategoryRepository(AppDbContext appDbContext)
-        //{
-        //    _appDbContext = appDbContext;
-        //}
-        //public IEnumerable<Category> Categories => _appDbContext.Categories;
-        public IEnumerable<Category> Categories => throw new NotImplementedException();
+        public CategoryRepository(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
+        public IEnumerable<Category> Categories => _appDbContext.Categories;
+        
     }
 }

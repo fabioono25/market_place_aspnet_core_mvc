@@ -20,7 +20,7 @@ namespace MarketPlace.Controllers
             // ViewBag.CurrentCategory = "Cheese cakes";
 
             var piesListViewModel = new PiesListViewModel();
-            piesListViewModel.Pies = _pieRepository.Pies;
+            piesListViewModel.Pies = _pieRepository.AllPies;
             piesListViewModel.CurrentCategory = "Cheese cakes";
 
             //return View(_pieRepository.Pies);
