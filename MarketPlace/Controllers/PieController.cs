@@ -26,5 +26,17 @@ namespace MarketPlace.Controllers
             //return View(_pieRepository.Pies);
             return View(piesListViewModel);
         }
+
+        public IActionResult Details(int id)
+        {
+            var pie = _pieRepository.GetPieById(id);
+
+            if (pie == null)
+            {
+                return NotFound();
+            }
+
+            return View(pie);
+        }
     }
 }
