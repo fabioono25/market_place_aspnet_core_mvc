@@ -31,6 +31,9 @@ namespace MarketPlace
             services.AddScoped<IPieRepository, PieRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+            services.AddHttpContextAccessor(); //allows to access the sessions from a non-controller class - bring HttpContext
+            services.AddSession();
+
             services.AddControllersWithViews();
         }
 
@@ -48,6 +51,8 @@ namespace MarketPlace
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
