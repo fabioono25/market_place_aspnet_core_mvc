@@ -64,6 +64,7 @@ namespace MarketPlace
 
             app.UseRouting(); //before useSession (order is important)
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
