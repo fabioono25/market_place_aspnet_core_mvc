@@ -53,8 +53,10 @@ namespace MarketPlace
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseRouting(); //before useSession (order is important)
             app.UseSession();
+
+            app.UseRouting(); //before useSession (order is important)
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
