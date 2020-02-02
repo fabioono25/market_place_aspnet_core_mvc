@@ -30,6 +30,9 @@ namespace MarketPlace
 
             services.AddScoped<IPieRepository, PieRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+            services.AddScoped<IOrderRepository, OrderRepository>();
+
             services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
 
             services.AddHttpContextAccessor(); //allows to access the sessions from a non-controller class - bring HttpContext
