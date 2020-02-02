@@ -1,6 +1,7 @@
 using MarketPlace.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,11 @@ namespace MarketPlace
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
+
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //.AddEntityFrameworkStores<AppDbContext>();
+
             //DI services registered
             //services.AddScoped<IPieRepository, MockPieRepository>();
             //services.AddScoped<ICategoryRepository, MockCategoryRepository>();
@@ -39,6 +45,7 @@ namespace MarketPlace
             services.AddSession();
 
             services.AddControllersWithViews();
+            services.AddRazorPages(); //because of scafolding for identity
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +74,8 @@ namespace MarketPlace
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
         }
     }
