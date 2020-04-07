@@ -19,7 +19,7 @@ namespace MarketPlace.Models
         //[ValidUrl(ErrorMessage = "That's not a valid URL")]
         public string ImageUrl { get; set; }
 
-       // [ValidUrl(ErrorMessage = "That's not a valid URL")]
+        // [ValidUrl(ErrorMessage = "That's not a valid URL")]
         public string ImageThumbnailUrl { get; set; }
         public bool IsPieOfTheWeek { get; set; }
         public bool InStock { get; set; }

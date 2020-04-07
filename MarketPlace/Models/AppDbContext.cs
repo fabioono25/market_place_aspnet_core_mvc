@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MarketPlace.Models
 {
-    public class AppDbContext: IdentityDbContext<IdentityUser> // DbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser> // DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
